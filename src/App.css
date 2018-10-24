@@ -50,6 +50,7 @@
   border-radius: 3px;
 }
 .trainForm > button {
+  float: none;
   border-radius: 3px;
   padding: 3px;
 }
@@ -65,4 +66,8 @@
 }
 .citiesList {
   list-style: none;
+}
+.trainsList {
+  list-style: none;
+  text-align: center;
 }

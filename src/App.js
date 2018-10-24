@@ -11,10 +11,12 @@ class App extends Component {
         departureCity: undefined,
         arrivalCity: undefined,
         scheduledTime: undefined,
+        stationShortCode: undefined,
         trainNumber: undefined,
         departureDate: undefined,
         trainType: undefined,
-        trainCategory: undefined
+        trainCategory: undefined,
+        error: undefined
       }
     ]
   };
@@ -37,9 +39,11 @@ class App extends Component {
       traindata: data,
       trainNumber: data[0].trainNumber,
       scheduledTime: data[0].timeTableRows[0].scheduledTime,
+      stationShortCode: data[0].timeTableRows[0].stationShortCode,
       departureDate: data[0].departureDate,
       trainType: data[0].trainType,
-      trainCategory: data[0].trainCategory
+      trainCategory: data[0].trainCategory,
+      error: "Please enter the values."
     });
     console.log(this.state.traindata);
   };
@@ -51,18 +55,7 @@ class App extends Component {
           <h1>JunaFormi!</h1>
         </header>
         <Form getTrains={this.getTrains} />
-        {this.state.traindata.map(train => {
-          return (
-            <div key={train.train_id}>
-              <p>Scheduled Time: {train.scheduledTime}</p>
-              <p>Train number: {train.trainNumber}</p>
-              <p>Departure Date: {train.departureDate}</p>
-              <p>Train Type: {train.trainType}</p>
-              <p>Train Category: {train.trainCategory}</p>
-            </div>
-          );
-        })}
-        <Cities />
+        <Trains traindata={this.state.traindata} />
       </div>
     );
   }

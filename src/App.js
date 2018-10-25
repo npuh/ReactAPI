@@ -1,15 +1,12 @@
 import React, { Component } from "react";
 import "./App.css";
 import Form from "./components/Form";
-// import Cities from "./components/Cities";
-// import Trains from "./components/Trains";
 
 class App extends Component {
   state = {
     traindata: []
   };
   getTrains = async e => {
-    // const name = e.target.elements.name.value;
     const depCity = e.target.elements.depCity.value;
     const arrCity = e.target.elements.arrCity.value;
     const depDate = e.target.elements.depDate.value;
@@ -18,8 +15,6 @@ class App extends Component {
     const api_call = await fetch(
       `https://rata.digitraffic.fi/api/v1/live-trains/station/${depCity}/${arrCity}?departure_date=${depDate}&limit=10`
     );
-    // const api_call = await fetch("https://rata.digitraffic.fi/api/v1/trains/");
-    //live-trains/station/<departure_station_code>/<arrival_station_code>?departure_date=<departure_date>&startDate=<startDate>&endDate=<endDate>&limit=<limit></limit>
 
     const data = await api_call.json();
 
@@ -44,8 +39,9 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1>Trrraaaaiiinss!</h1>
+          <h6>TrainFormForYou</h6>
         </header>
+        <h1 className="h1Trains">Trrraaaaiiinss!</h1>
         <button className="clearButton" onClick={this.clearAll}>
           Clear All
         </button>
@@ -65,7 +61,15 @@ class App extends Component {
             </div>
           );
         })}
-        <footer />
+        <div>
+          <br />
+        </div>
+        <div>
+          <br />
+        </div>
+        <footer>
+          This train information is brought to you by digitraffic.
+        </footer>
       </div>
     );
   }

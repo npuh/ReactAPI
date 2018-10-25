@@ -3,7 +3,7 @@ import React from "react";
 const Form = props => (
   <div>
     <h3>Get your train information here!</h3>
-    <form className="trainForm" onSubmit={props.getTrains}>
+    <form className="trainForm" id="trainForm" onSubmit={props.getTrains}>
       <input
         type="text"
         name="depCity"
@@ -15,7 +15,7 @@ const Form = props => (
         type="text"
         name="arrCity"
         required
-        placeholder="Arrival City Code"
+        placeholder="Destination City Code"
       />
       <br />
       <input type="text" name="depDate" required placeholder="vvvv/mm/dd" />

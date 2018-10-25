@@ -28,6 +28,11 @@ class App extends Component {
     });
     console.log(this.state.traindata);
   };
+  // clearForm = e => {
+  //   e.preventDefault();
+  //   console.log("Reset!!");
+  //   document.getElementById("trainForm").reset();
+  // };
 
   render() {
     let nr = 0;
@@ -36,22 +41,26 @@ class App extends Component {
         <header className="App-header">
           <h1>Trrraaaaiiinss!</h1>
         </header>
+        {/* <button className="clearButton" onClick={this.clearForm}>
+          Clear form
+        </button> */}
         <Form getTrains={this.getTrains} />
         {this.state.traindata.map(train => {
           return (
-            <div key={train.trainNumber}>
+            <div key={train.trainNumber} className="trainDiv">
               <p>Option {(nr += 1)} </p>
-              <p>Train number: {train.trainNumber}</p>
-              <p>Departure date: {train.departureDate}</p>
-              <p>Train type: {train.trainType}</p>
+              <p>
+                Train number: {train.trainNumber}, Departure date:
+                {train.departureDate}
+              </p>
               <p>
                 Scheduled departure time: {train.timeTableRows[0].scheduledTime}
               </p>
               <button>Select</button>
-              <hr />
             </div>
           );
         })}
+        <footer />
       </div>
     );
   }

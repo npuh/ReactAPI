@@ -1,12 +1,24 @@
 import React, { Component } from "react";
 import "./App.css";
 import Form from "./components/Form";
-// import Cities from "./components/Cities";
-// import Trains from "./components/Trains";
+import Cities from "./components/Cities";
+import Trains from "./components/Trains";
 
 class App extends Component {
   state = {
-    traindata: []
+    traindata: [
+      {
+        departureCity: undefined,
+        arrivalCity: undefined,
+        scheduledTime: undefined,
+        stationShortCode: undefined,
+        trainNumber: undefined,
+        departureDate: undefined,
+        trainType: undefined,
+        trainCategory: undefined,
+        error: undefined
+      }
+    ]
   };
   getTrains = async e => {
     // const name = e.target.elements.name.value;
@@ -24,34 +36,26 @@ class App extends Component {
     const data = await api_call.json();
 
     this.setState({
-      traindata: data
+      traindata: data,
+      trainNumber: data[0].trainNumber,
+      scheduledTime: data[0].timeTableRows[0].scheduledTime,
+      stationShortCode: data[0].timeTableRows[0].stationShortCode,
+      departureDate: data[0].departureDate,
+      trainType: data[0].trainType,
+      trainCategory: data[0].trainCategory,
+      error: "Please enter the values."
     });
-    console.log(this.state.traindata);
+    console.log(this.state.traindata.scheduledTime);
   };
 
   render() {
-    let nr = 0;
     return (
       <div className="App">
         <header className="App-header">
-          <h1>Trrraaaaiiinss!</h1>
+          <h1>JunaFormi!</h1>
         </header>
         <Form getTrains={this.getTrains} />
-        {this.state.traindata.map(train => {
-          return (
-            <div key={train.trainNumber}>
-              <p>Option {(nr += 1)} </p>
-              <p>Train number: {train.trainNumber}</p>
-              <p>Departure date: {train.departureDate}</p>
-              <p>Train type: {train.trainType}</p>
-              <p>
-                Scheduled departure time: {train.timeTableRows[0].scheduledTime}
-              </p>
-              <button>Select</button>
-              <hr />
-            </div>
-          );
-        })}
+        <Trains traindata={this.state.traindata} />
       </div>
     );
   }

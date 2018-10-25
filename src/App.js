@@ -28,11 +28,16 @@ class App extends Component {
     });
     console.log(this.state.traindata);
   };
-  // clearForm = e => {
-  //   e.preventDefault();
-  //   console.log("Reset!!");
-  //   document.getElementById("trainForm").reset();
-  // };
+  clearAll = e => {
+    e.preventDefault();
+    console.log("Cleared!!");
+    document.getElementById("trainForm").reset();
+    let divData = this.state.traindata;
+    divData.splice(0);
+    this.setState({
+      traindata: divData
+    });
+  };
 
   render() {
     let nr = 0;
@@ -41,13 +46,13 @@ class App extends Component {
         <header className="App-header">
           <h1>Trrraaaaiiinss!</h1>
         </header>
-        {/* <button className="clearButton" onClick={this.clearForm}>
-          Clear form
-        </button> */}
+        <button className="clearButton" onClick={this.clearAll}>
+          Clear All
+        </button>
         <Form getTrains={this.getTrains} />
         {this.state.traindata.map(train => {
           return (
-            <div key={train.trainNumber} className="trainDiv">
+            <div key={train.trainNumber} className="trainDiv" id="trainDiv">
               <p>Option {(nr += 1)} </p>
               <p>
                 Train number: {train.trainNumber}, Departure date:

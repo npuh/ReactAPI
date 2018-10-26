@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import Form from "./components/Form";
+import Columns from "./components/Columns";
 
 class App extends Component {
   state = {
@@ -13,7 +14,7 @@ class App extends Component {
 
     e.preventDefault();
     const api_call = await fetch(
-      `https://rata.digitraffic.fi/api/v1/live-trains/station/${depCity}/${arrCity}?departure_date=${depDate}&limit=10`
+      `https://rata.digitraffic.fi/api/v1/live-trains/station/${depCity}/${arrCity}?departure_date=${depDate}&limit=6`
     );
 
     const data = await api_call.json();
@@ -39,7 +40,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h6>TrainFormForYou</h6>
+          <h6>Train form made just for fun!</h6>
         </header>
         <h1 className="h1Trains">Trrraaaaiiinss!</h1>
         <button className="clearButton" onClick={this.clearAll}>
@@ -67,6 +68,7 @@ class App extends Component {
         <div>
           <br />
         </div>
+        <Columns />
         <footer>
           This train information is brought to you by digitraffic.
         </footer>

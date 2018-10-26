@@ -2,19 +2,31 @@ import React, { Component } from "react";
 import junaedestäpieni from "../contents/images/junaedestäpieni.jpg";
 import junalaituripieni from "../contents/images/junalaituripieni.jpg";
 import trainjunametsä from "../contents/images/trainjunametsä.jpg";
+
 class Columns extends Component {
   render() {
     return (
       <div>
         <div className="row">
           <div className="column">
-            <p>Just some text here. So tralalalalalalaa, TGIF!</p>
+            <address>
+              Just some text here. <br />
+              So tralalalalalalaa, TGIF!
+            </address>
           </div>
           <div className="column">
-            <p>Phone number: 0505050505 email: myemail@email.com</p>
+            <address>
+              Phone number: 0505050505
+              <br />
+              email: <a href="mailto:myemail@email.com">My email</a>
+            </address>
           </div>
           <div className="column">
-            <p>Please, come to MyStreet str1, 00110 Helsinki.</p>
+            <address>
+              Please, come to MyStreet str1
+              <br />
+              00110 Helsinki.
+            </address>
           </div>
         </div>
         <div className="row">

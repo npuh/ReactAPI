@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import "./App.css";
+import TrainList from "./components/Trainlist";
 import Form from "./components/Form";
 import Columns from "./components/Columns";
+import "./App.css";
 
-class App extends Component {
+class App2 extends Component {
   state = {
     traindata: []
   };
@@ -22,59 +23,44 @@ class App extends Component {
     this.setState({
       traindata: data
     });
-    console.log(this.state.traindata);
+    console.log(data);
   };
-  clearAll = e => {
-    e.preventDefault();
-    console.log("Cleared!!");
-    document.getElementById("trainForm").reset();
-    let divData = this.state.traindata;
-    divData.splice(0);
+  deleteTrain = (index, e) => {
+    const traindata = Object.assign([], this.state.traindata);
+    traindata.splice(index, 1);
     this.setState({
-      traindata: divData
+      traindata: traindata
     });
   };
 
   render() {
-    let nr = 0;
     return (
       <div className="App">
         <header className="App-header">
           <h6>Train form made just for fun!</h6>
         </header>
         <h1 className="h1Trains">Trrraaaaiiinss!</h1>
-        <button className="clearButton" onClick={this.clearAll}>
-          Clear All
-        </button>
         <Form getTrains={this.getTrains} />
-        {this.state.traindata.map(train => {
-          return (
-            <div key={train.trainNumber} className="trainDiv" id="trainDiv">
-              <p>Option {(nr += 1)} </p>
-              <p>
-                Train number: {train.trainNumber}, Departure date:
-                {train.departureDate}
-              </p>
-              <p>
+        <ul>
+          {this.state.traindata.map((train, index) => {
+            return (
+              <TrainList
+                key={train.trainNumber}
+                delEvent={this.deleteTrain.bind(this, index)}
+              >
+                {train.trainNumber}, Departure date: {train.departureDate},
                 Scheduled departure time: {train.timeTableRows[0].scheduledTime}
-              </p>
-              <button>Select</button>
-            </div>
-          );
-        })}
-        <div>
-          <br />
-        </div>
-        <div>
-          <br />
-        </div>
+              </TrainList>
+            );
+          })}
+        </ul>
         <Columns />
         <footer>
-          This train information is brought to you by digitraffic.
+          This train information is brought to you by digitraffic. And me. :D
         </footer>
       </div>
     );
   }
 }
 
-export default App;
+export default App2;

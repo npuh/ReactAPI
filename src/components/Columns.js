@@ -28,6 +28,13 @@ class Columns extends Component {
               00110 Helsinki.
             </address>
           </div>
+          <div className="column">
+            <address>
+              Fourth column,
+              <br />
+              special information.
+            </address>
+          </div>
         </div>
         <div className="row">
           <div className="column">

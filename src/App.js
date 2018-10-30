@@ -4,7 +4,7 @@ import Form from "./components/Form";
 import Columns from "./components/Columns";
 import "./App.css";
 
-class App2 extends Component {
+class App extends Component {
   state = {
     traindata: []
   };
@@ -32,6 +32,15 @@ class App2 extends Component {
       traindata: traindata
     });
   };
+  selectTrain = (trainNumber, e) => {
+    const index = this.state.traindata.findIndex(traindata => {
+      return traindata.trainNumber === trainNumber;
+    });
+    document.getElementById("trainDiv").innerHTML =
+      "trainnumber: " + trainNumber;
+
+    console.log("trainnumber: " + trainNumber);
+  };
 
   render() {
     return (
@@ -47,6 +56,7 @@ class App2 extends Component {
               <TrainList
                 key={train.trainNumber}
                 delEvent={this.deleteTrain.bind(this, index)}
+                selectEvent={this.selectTrain.bind(this, train.trainNumber)}
               >
                 {train.trainNumber}, Departure date: {train.departureDate},
                 Scheduled departure time: {train.timeTableRows[0].scheduledTime}
@@ -63,4 +73,4 @@ class App2 extends Component {
   }
 }
 
-export default App2;
+export default App;

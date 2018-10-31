@@ -44,8 +44,8 @@ class App extends Component {
   selectTrain = (trainNumber, departureDate, e) => {
     e.preventDefault();
     let list = document.getElementById("list");
-    if (list.style.display === "none") list.style.display = "block";
-    else list.style.display = "block";
+    if (list.style.display === "none") list.style.display = "inline-block";
+    else list.style.display = "inline-block";
 
     const index = this.state.traindata.findIndex(traindata => {
       return (
@@ -86,6 +86,7 @@ class App extends Component {
           Clear All
         </button>
         <Form getTrains={this.getTrains} />
+        <div hidden className="list" id="list" />
         <ul>
           {this.state.traindata.map((train, index) => {
             return (
@@ -104,14 +105,6 @@ class App extends Component {
             );
           })}
         </ul>
-
-        <div
-          hidden
-          className="list"
-          id="list"
-          type="button"
-          onClick={this.goBack}
-        />
         <Columns />
         <footer>
           This train information is brought to you by digitraffic. And me. :D

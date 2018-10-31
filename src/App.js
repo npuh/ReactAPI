@@ -25,6 +25,13 @@ class App extends Component {
     });
     console.log(data);
   };
+
+  //Returns traindata.
+  gettingTrains() {
+    return this.state.traindata;
+  }
+
+  //Deletes a selected train from the list.
   deleteTrain = (index, e) => {
     const traindata = Object.assign([], this.state.traindata);
     traindata.splice(index, 1);
@@ -32,14 +39,40 @@ class App extends Component {
       traindata: traindata
     });
   };
-  selectTrain = (trainNumber, e) => {
-    const index = this.state.traindata.findIndex(traindata => {
-      return traindata.trainNumber === trainNumber;
-    });
-    document.getElementById("trainDiv").innerHTML =
-      "trainnumber: " + trainNumber;
 
-    console.log("trainnumber: " + trainNumber);
+  //Selects one train from the list and shows the information at the bottom of the page.
+  selectTrain = (trainNumber, departureDate, e) => {
+    e.preventDefault();
+    let list = document.getElementById("list");
+    if (list.style.display === "none") list.style.display = "block";
+    else list.style.display = "block";
+
+    const index = this.state.traindata.findIndex(traindata => {
+      return (
+        traindata.trainNumber === trainNumber,
+        traindata.departureDate === departureDate
+      );
+    });
+
+    document.getElementById("list").innerHTML =
+      "Train number: " + trainNumber + ", departure date: " + departureDate;
+
+    console.log("train number: " + trainNumber);
+  };
+
+  //Clears the page
+  clearAll = e => {
+    e.preventDefault();
+    let list = document.getElementById("list");
+    if (list.style.display === "block") list.style.display = "none";
+    console.log("Cleared!!");
+    document.getElementById("trainForm").reset();
+    let divData = this.state.traindata;
+    console.log(this.gettingTrains());
+    divData.splice(0);
+    this.setState({
+      traindata: divData
+    });
   };
 
   render() {
@@ -49,6 +82,9 @@ class App extends Component {
           <h6>Train form made just for fun!</h6>
         </header>
         <h1 className="h1Trains">Trrraaaaiiinss!</h1>
+        <button className="clearButton" onClick={this.clearAll}>
+          Clear All
+        </button>
         <Form getTrains={this.getTrains} />
         <ul>
           {this.state.traindata.map((train, index) => {
@@ -56,7 +92,11 @@ class App extends Component {
               <TrainList
                 key={train.trainNumber}
                 delEvent={this.deleteTrain.bind(this, index)}
-                selectEvent={this.selectTrain.bind(this, train.trainNumber)}
+                selectEvent={this.selectTrain.bind(
+                  this,
+                  train.trainNumber,
+                  train.departureDate
+                )}
               >
                 {train.trainNumber}, Departure date: {train.departureDate},
                 Scheduled departure time: {train.timeTableRows[0].scheduledTime}
@@ -64,6 +104,14 @@ class App extends Component {
             );
           })}
         </ul>
+
+        <div
+          hidden
+          className="list"
+          id="list"
+          type="button"
+          onClick={this.goBack}
+        />
         <Columns />
         <footer>
           This train information is brought to you by digitraffic. And me. :D

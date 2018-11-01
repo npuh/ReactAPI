@@ -2,8 +2,8 @@ import React from "react";
 
 const StationList = props => {
   return (
-    <div className="div">
-      <li className="stationList">{props.children}</li>
+    <div className="stationList">
+      <li>{props.children}</li>
     </div>
   );
 };

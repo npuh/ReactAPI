@@ -3,18 +3,17 @@ import StationForm from "./StationForm";
 import StationList from "./StationList";
 
 const url = "https://rata.digitraffic.fi/api/v1/metadata/stations";
-class Cities extends Component {
+class Stations extends Component {
   state = {
     stations: []
   };
 
   getStations = async e => {
     e.preventDefault();
+
     const api_call = await fetch(url);
     const data = await api_call.json();
-    let row = document.getElementById("row");
 
-    row.style.display = "block";
     this.setState({
       stations: data
     });
@@ -24,7 +23,7 @@ class Cities extends Component {
     return (
       <div>
         <StationForm getStations={this.getStations} />
-        <span className="row" id="row" hidden onMouseDown={this.onMouseDown}>
+        <span>
           {this.state.stations.map(station => {
             return (
               <StationList key={station.stationShortCode}>
@@ -42,4 +41,4 @@ class Cities extends Component {
   }
 }
 
-export default Cities;
+export default Stations;

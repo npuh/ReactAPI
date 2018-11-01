@@ -38,14 +38,14 @@ h3 {
 
 /* Create two columns/boxes that floats next to each other */
 nav {
-  border-bottom: 1px solid lightgrey;
   border-top: 1px solid lightgrey;
+  border-bottom: 1px solid lightgrey;
   border-left: 1px solid lightgrey;
-  border-radius: 4px;
-  min-height: 290px;
+  min-height: 532px;
   float: left;
   width: 30%;
-  background: rgb(236, 235, 235);
+  background: transparent;
+  /* background: rgb(240, 239, 239); */
   padding: 20px;
 }
 
@@ -56,12 +56,10 @@ nav ul {
 }
 /*Style the article*/
 article {
-  min-height: 290px;
   border: 1px solid lightgrey;
   float: left;
   padding: 20px;
   width: 70%;
-  border-radius: 4px;
 }
 
 /*Style the trainList and inputs*/

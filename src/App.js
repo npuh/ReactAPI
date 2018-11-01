@@ -4,6 +4,9 @@ import Form from "./components/Form";
 import Columns from "./components/Columns";
 import "./App.css";
 import Stations from "./components/Stations";
+import junaedestäpieni from "./contents/images/junaedestäpieni.jpg";
+import junalaituripieni from "./contents/images/junalaituripieni.jpg";
+import trainjunametsä from "./contents/images/trainjunametsä.jpg";
 
 class App extends Component {
   state = {
@@ -111,6 +114,21 @@ class App extends Component {
                 );
               })}
             </ul>
+            <div className="row">
+              <div>{""}</div>
+              <p className="pfooter">
+                Look at all these beautiful train related pictures below.{" "}
+              </p>
+              <div className="column">
+                <img src={junaedestäpieni} alt="train1" />
+              </div>
+              <div className="column">
+                <img src={junalaituripieni} alt="train2" />
+              </div>
+              <div className="column">
+                <img src={trainjunametsä} alt="train3" />
+              </div>
+            </div>
           </article>
         </section>
         <Columns />

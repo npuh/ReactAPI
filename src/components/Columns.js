@@ -1,26 +1,9 @@
 import React, { Component } from "react";
-import junaedestäpieni from "../contents/images/junaedestäpieni.jpg";
-import junalaituripieni from "../contents/images/junalaituripieni.jpg";
-import trainjunametsä from "../contents/images/trainjunametsä.jpg";
 
 class Columns extends Component {
   render() {
     return (
       <div>
-        <div className="row">
-          <p className="pfooter">
-            Look at all these beautiful train related pictures below.{" "}
-          </p>
-          <div className="column">
-            <img src={junaedestäpieni} alt="train1" />
-          </div>
-          <div className="column">
-            <img src={junalaituripieni} alt="train2" />
-          </div>
-          <div className="column">
-            <img src={trainjunametsä} alt="train3" />
-          </div>
-        </div>
         <div className="row">
           <div className="column">
             <address>

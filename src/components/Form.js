@@ -21,6 +21,9 @@ const Form = props => (
       <input type="text" name="depDate" required placeholder="VVVV-MM-DD" />
       <br />
       <button className="searchButton">Search</button>
+      <button className="clearButton" onClick={props.clearAll}>
+        Clear All
+      </button>
     </form>
   </div>
 );

@@ -3,6 +3,7 @@ import TrainList from "./components/Trainlist";
 import Form from "./components/Form";
 import Columns from "./components/Columns";
 import "./App.css";
+import Stations from "./components/Stations";
 
 class App extends Component {
   state = {
@@ -73,7 +74,6 @@ class App extends Component {
       traindata: divData
     });
   };
-
   render() {
     return (
       <div className="App">
@@ -81,32 +81,38 @@ class App extends Component {
           <h6>Train form made just for fun!</h6>
         </header>
         <h1 className="h1Trains">Trrraaaaiiinss!</h1>
-        <button className="clearButton" onClick={this.clearAll}>
-          Clear All
-        </button>
-        <Form getTrains={this.getTrains} />
-        <div hidden className="list" id="list" />
-        <ul>
-          {this.state.traindata.map((train, index) => {
-            return (
-              <TrainList
-                key={train.trainNumber}
-                delEvent={this.deleteTrain.bind(this, index)}
-                selectEvent={this.selectTrain.bind(
-                  this,
-                  train.trainNumber,
-                  train.departureDate
-                )}
-              >
-                {train.trainNumber} <br />
-                Departure date: {train.departureDate}
-                <br />
-                Scheduled departure time:
-                {train.timeTableRows[0].scheduledTime}
-              </TrainList>
-            );
-          })}
-        </ul>
+        <section>
+          <nav>
+            <span>
+              <Stations />
+            </span>
+          </nav>
+          <article>
+            <Form getTrains={this.getTrains} clearAll={this.clearAll} />
+            <div hidden className="list" id="list" />
+            <ul>
+              {this.state.traindata.map((train, index) => {
+                return (
+                  <TrainList
+                    key={train.trainNumber}
+                    delEvent={this.deleteTrain.bind(this, index)}
+                    selectEvent={this.selectTrain.bind(
+                      this,
+                      train.trainNumber,
+                      train.departureDate
+                    )}
+                  >
+                    {train.trainNumber} <br />
+                    Departure date: {train.departureDate}
+                    <br />
+                    Scheduled departure time:
+                    {train.timeTableRows[0].scheduledTime}
+                  </TrainList>
+                );
+              })}
+            </ul>
+          </article>
+        </section>
         <Columns />
         <footer>
           This train information is brought to you by digitraffic. And me. :D

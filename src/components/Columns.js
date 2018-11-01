@@ -8,6 +8,20 @@ class Columns extends Component {
     return (
       <div>
         <div className="row">
+          <p className="pfooter">
+            Look at all these beautiful train related pictures below.{" "}
+          </p>
+          <div className="column">
+            <img src={junaedestäpieni} alt="train1" />
+          </div>
+          <div className="column">
+            <img src={junalaituripieni} alt="train2" />
+          </div>
+          <div className="column">
+            <img src={trainjunametsä} alt="train3" />
+          </div>
+        </div>
+        <div className="row">
           <div className="column">
             <address>
               Just some text here. <br />
@@ -34,20 +48,6 @@ class Columns extends Component {
               <br />
               special information.
             </address>
-          </div>
-        </div>
-        <div className="row">
-          <p className="pfooter">
-            Look at all these beautiful train related pictures below.{" "}
-          </p>
-          <div className="column">
-            <img src={junaedestäpieni} alt="train1" />
-          </div>
-          <div className="column">
-            <img src={junalaituripieni} alt="train2" />
-          </div>
-          <div className="column">
-            <img src={trainjunametsä} alt="train3" />
           </div>
         </div>
       </div>

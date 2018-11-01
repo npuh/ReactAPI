@@ -8,8 +8,14 @@ class Stations extends Component {
     stations: []
   };
 
+  //Gets station names and station short codes. Also hides the list when clicked again.
   getStations = async e => {
     e.preventDefault();
+
+    let hiddenDiv = document.getElementById("hidden");
+    if (hiddenDiv.style.display === "block") {
+      hiddenDiv.style.display = "none";
+    } else hiddenDiv.style.display = "block";
 
     const api_call = await fetch(url);
     const data = await api_call.json();
@@ -23,12 +29,12 @@ class Stations extends Component {
     return (
       <div>
         <StationForm getStations={this.getStations} />
-        <span>
+        <span hidden className="hidden" id="hidden">
           {this.state.stations.map(station => {
             return (
               <StationList key={station.stationShortCode}>
                 <p>
-                  Station name: <b>{station.stationName}</b> | station short
+                  Station name: <b>{station.stationName}</b>, station short
                   code: {""}
                   <b>{station.stationShortCode}</b>
                 </p>

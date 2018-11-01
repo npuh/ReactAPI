@@ -145,6 +145,14 @@ footer {
 }
 .stationList {
   list-style: none;
+  margin-left: 3%;
+  margin-bottom: 1%;
+  padding: 5px;
+  text-align: center;
+  width: 20%;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 4px;
 }
 
 img {

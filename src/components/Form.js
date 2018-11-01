@@ -18,7 +18,7 @@ const Form = props => (
         placeholder="Destination City Code"
       />
       <br />
-      <input type="text" name="depDate" required placeholder="vvvv/mm/dd" />
+      <input type="text" name="depDate" required placeholder="VVVV-MM-DD" />
       <br />
       <button className="searchButton">Search</button>
     </form>

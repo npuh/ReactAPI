@@ -5,7 +5,7 @@ const Trainlist = props => {
   return (
     <div className="trainDiv">
       <div id="activate-div">
-        <p>TrainNumber: {props.children}</p>
+        <p>Train number: {props.children}</p>
         <button className="basicButton" onClick={props.delEvent}>
           Delete
         </button>

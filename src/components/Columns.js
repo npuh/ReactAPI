@@ -37,6 +37,9 @@ class Columns extends Component {
           </div>
         </div>
         <div className="row">
+          <p className="pfooter">
+            Look at all these beautiful train related pictures below.{" "}
+          </p>
           <div className="column">
             <img src={junaedestäpieni} alt="train1" />
           </div>

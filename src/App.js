@@ -8,12 +8,15 @@ class App extends Component {
   state = {
     traindata: []
   };
+
+  //Gets the train data from digitraffic.fi 6 first trains.
   getTrains = async e => {
     const depCity = e.target.elements.depCity.value;
     const arrCity = e.target.elements.arrCity.value;
     const depDate = e.target.elements.depDate.value;
 
     e.preventDefault();
+
     const api_call = await fetch(
       `https://rata.digitraffic.fi/api/v1/live-trains/station/${depCity}/${arrCity}?departure_date=${depDate}&limit=6`
     );
@@ -23,13 +26,7 @@ class App extends Component {
     this.setState({
       traindata: data
     });
-    console.log(data);
   };
-
-  //Returns traindata.
-  gettingTrains() {
-    return this.state.traindata;
-  }
 
   //Deletes a selected train from the list.
   deleteTrain = (index, e) => {
@@ -43,6 +40,7 @@ class App extends Component {
   //Selects one train from the list and shows the information at the bottom of the page.
   selectTrain = (trainNumber, departureDate, e) => {
     e.preventDefault();
+
     let list = document.getElementById("list");
     if (list.style.display === "none") list.style.display = "inline-block";
     else list.style.display = "inline-block";
@@ -55,8 +53,10 @@ class App extends Component {
     });
 
     document.getElementById("list").innerHTML =
-      "Train number: " + trainNumber + ", departure date: " + departureDate;
-
+      "WOOHOO! You successfully selected train number: " +
+      trainNumber +
+      ", departure date: " +
+      departureDate;
     console.log("train number: " + trainNumber);
   };
 
@@ -64,11 +64,10 @@ class App extends Component {
   clearAll = e => {
     e.preventDefault();
     let list = document.getElementById("list");
-    if (list.style.display === "block") list.style.display = "none";
+    if (list.style.display === "inline-block") list.style.display = "none";
     console.log("Cleared!!");
     document.getElementById("trainForm").reset();
     let divData = this.state.traindata;
-    console.log(this.gettingTrains());
     divData.splice(0);
     this.setState({
       traindata: divData
@@ -99,8 +98,11 @@ class App extends Component {
                   train.departureDate
                 )}
               >
-                {train.trainNumber}, Departure date: {train.departureDate},
-                Scheduled departure time: {train.timeTableRows[0].scheduledTime}
+                {train.trainNumber} <br />
+                Departure date: {train.departureDate}
+                <br />
+                Scheduled departure time:
+                {train.timeTableRows[0].scheduledTime}
               </TrainList>
             );
           })}

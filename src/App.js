@@ -7,6 +7,7 @@ import Stations from "./components/Stations";
 import junaedestäpieni from "./contents/images/junaedestäpieni.jpg";
 import junalaituripieni from "./contents/images/junalaituripieni.jpg";
 import trainjunametsä from "./contents/images/trainjunametsä.jpg";
+import viitat from "./contents/images/viitat.jpg";
 
 class App extends Component {
   state = {
@@ -88,6 +89,9 @@ class App extends Component {
           <nav>
             <span>
               <Stations />
+              <div className="row">
+                <img src={viitat} alt="signs" className="img2" />
+              </div>
             </span>
           </nav>
           <article>
@@ -120,13 +124,13 @@ class App extends Component {
                 Look at all these beautiful train related pictures below.{" "}
               </p>
               <div className="column">
-                <img src={junaedestäpieni} alt="train1" />
+                <img src={junaedestäpieni} alt="train1" className="img" />
               </div>
               <div className="column">
-                <img src={junalaituripieni} alt="train2" />
+                <img src={junalaituripieni} alt="train2" className="img" />
               </div>
               <div className="column">
-                <img src={trainjunametsä} alt="train3" />
+                <img src={trainjunametsä} alt="train3" className="img" />
               </div>
             </div>
           </article>
